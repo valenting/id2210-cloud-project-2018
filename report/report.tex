@@ -122,12 +122,11 @@ Bucket Name                                           & Thread count & Write bw 
 
 As we can see the transfers quickly saturate the bandwidth provided by my ISP, so there isn't much we can say about the buckets by looking at the table.
 
+\href{https://github.com/valenting/id2210-cloud-project-2018/blob/master/test_storage.py}{Link to code}
+
 \section{Task 2 - Setting up a VM}
 
 \subsection{Task 2.1 - Web Console}
-
-Create a vm using the web consoles. Report(1/2p) the required steps and
-the relevant configuration steps you took.
 
 Setting up the VM via the web consoles is a fairly easy task.
 All one needs to do is to go to the web page located at \textbf{https://console.cloud.google.com/compute/instances?project=[PROJECT]},
@@ -165,6 +164,8 @@ gcloud compute --project=id2210-vt18-group3 firewall-rules create fw-2222
 
 Upon connecting, sending data via the socket and closing the socket, we then check that the data was received on the VM. 
 
+\href{https://github.com/valenting/id2210-cloud-project-2018/blob/master/test_compute.py}{Link to code}
+
 \section{Task 3 - Internal storage support}
 
 \subsection{Task 3.1 - Mounting external storage}
@@ -175,6 +176,8 @@ Mounting buckets on VMs is done via the gcs-fuse tool. One issue I had is that t
 The tool creates and mounts a virtual filesystem. Each operation on the filesystem corresponds to one or more HTTP operations that may be performed as a consequence.
 
 One important characteristic of the GCS buckets is that they are non-hierarchical, which means that folders aren't an entity that is represented in GCS; however files can be prefixed by a string that looks like a folder path, and the FUSE system will display as a being a folder.
+
+\href{https://github.com/valenting/id2210-cloud-project-2018/blob/master/startup_script.sh}{Link to code}
 
 \subsection{Task 3.2 - External storage access}
 
@@ -208,6 +211,8 @@ Bucket Name                                           & Thread count & Write bw 
                                                       & 4            & 19.72           & 339.73         \\ \hline
 \end{tabular}
 \end{table}
+
+\href{https://github.com/valenting/id2210-cloud-project-2018/blob/master/test_internal_storage.py}{Link to code}
 
 \subsection{Task 3.3 - VM local storage access}
 
@@ -245,6 +250,8 @@ Thread count & Write bw (MBps) & Read bw (MBps) \\ \hline
 \end{tabular}
 \end{table}
 
+\href{https://github.com/valenting/id2210-cloud-project-2018/blob/master/test_internal_storage.py#L63-L73}{Link to code}
+
 % Write speed (bucket: ssd parralel_count:1): 149.60 MBps
 % Read speed (bucket: ssd parralel_count:1): 221.60 MBps
 % Write speed (bucket: ssd parralel_count:2): 291.65 MBps
@@ -269,6 +276,7 @@ us-east1-b            & 8.62          & 9.69          \\ \hline
 \end{tabular}
 \end{table}
 
+\href{https://github.com/valenting/id2210-cloud-project-2018/blob/master/test_iperf.py}{Link to code}
 
 \subsection{Task 4.2 - VM to VM network benchmark}
 
@@ -291,6 +299,8 @@ australia-southeast1-b & 97 &  716   \\ \hline
 
 As we can see for TCP, locality is very important, as the bandwidth drops are obviously related to the distance from the server.
 However, UDP appears to be rate limited to under 800 Mbits/second, but for large distances it is able to achieve a higher bandwidth at the expense of packet loss and out-of-order packet arrivals, which may be OK for some applications.
+
+\href{https://github.com/valenting/id2210-cloud-project-2018/blob/master/test_network.py}{Link to code}
 
 %%% End document
 \end{document}
